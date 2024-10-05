@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import LoggedHeader from './components/LoggedHeader';
+import Header from '../components/Header';
 import axios from 'axios';
 export default function Posts() {
   const [posts, setPosts] = useState([]);
@@ -17,8 +17,8 @@ export default function Posts() {
   });
   return (
     <>
-      <LoggedHeader />
-      {error && <p style={{ color: 'red' }}>{error}</p>}{' '}
+      <Header />
+      {error && <span style={{ color: 'red' }}>{error}</span>}{' '}
       {/* Display error message if exists */}
       <div>
         {posts.length > 0 ? (

@@ -1,4 +1,4 @@
-import Header from './components/Header';
+import Header from '../components/Header';
 import axios from 'axios';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
