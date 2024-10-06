@@ -2,6 +2,13 @@ import Header from '../components/Header';
 import axios from 'axios';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import {
+  FormControl,
+  FormErrorMessage,
+  FormLabel,
+  Input,
+  Button,
+} from '@chakra-ui/react';
 export default function Signup() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -26,49 +33,55 @@ export default function Signup() {
   return (
     <>
       <Header />
-      <form action="" onSubmit={handleSubmit}>
-        <div className="">
-          <label htmlFor="">Username :</label>
-          <input
-            type="text"
-            name="username"
-            id="username"
-            placeholder="Enter your Username"
-            value={username}
-            onChange={(e) => {
-              setUsername(e.target.value);
-            }}
-          />
-        </div>
-        <div className="">
-          <label htmlFor="">Email :</label>
-          <input
-            type="text"
-            name="email"
-            id="email"
-            placeholder="Enter Your Email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-          />
-        </div>
-        <div className="">
-          <label htmlFor="">Password :</label>
-          <input
-            type="text"
-            name="password"
-            id="password"
-            placeholder="Enter your password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
-        </div>
-        <div className="">
-          <button type="submit">Login</button>
-        </div>
-      </form>
-      {error && <p style={{ color: 'red' }}>{error}</p>}
+      <div className="formContainer">
+        <form onSubmit={handleSubmit} className="form">
+          <FormControl as="fieldset">
+            <div className="inputs">
+              <FormLabel as="legend">Login :</FormLabel>
+              <FormLabel htmlFor="">Username :</FormLabel>
+              <Input
+                type="text"
+                name="username"
+                id="username"
+                placeholder="Enter Your Username"
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
+                required
+              />
+            </div>
+            <div className="inputs">
+              <FormLabel htmlFor="">Email :</FormLabel>
+              <Input
+                type="text"
+                name="email"
+                id="email"
+                placeholder="Enter Your Email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+              />
+            </div>
+            <div className="inputs">
+              <FormLabel htmlFor="">Password :</FormLabel>
+              <Input
+                type="text"
+                name="password"
+                id="password"
+                placeholder="Enter your password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
+              />
+            </div>
+            <div className="inputs">
+              <Button type="submit" size="sm" colorScheme="blue">
+                Login
+              </Button>{' '}
+            </div>
+          </FormControl>
+          {error && <FormErrorMessage>{error}</FormErrorMessage>}
+        </form>
+      </div>
     </>
   );
 }

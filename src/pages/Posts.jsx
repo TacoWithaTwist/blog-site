@@ -7,7 +7,12 @@ export default function Posts() {
   useEffect(() => {
     const fetchPosts = async () => {
       try {
-        const response = await axios.get('http://localhost:3000/api/posts');
+        const token = localStorage.getItem('jwtToken');
+        const response = await axios.get('http://localhost:3000/api/posts', {
+          headers: {
+            Authorization: `Bearer ${token}`, // Send the token in the Authorization header
+          },
+        });
         setPosts(response.data);
       } catch (error) {
         setError(error);
