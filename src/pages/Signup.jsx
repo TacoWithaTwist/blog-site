@@ -13,21 +13,26 @@ export default function Signup() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [username, setUsername] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
   const navigate = useNavigate();
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
+      setIsLoading(true);
       const response = await axios.post('http://localhost:3000/api/signup', {
         username,
         email,
         password,
       });
+
       console.log('Signup response:', response); // Log the response for debugging
       navigate('/login'); // Redirect to home page
     } catch (err) {
       setError('Invalid credentials');
       console.error(err);
+    } finally {
+      setIsLoading(false);
     }
   };
   return (
@@ -74,7 +79,12 @@ export default function Signup() {
               />
             </div>
             <div className="inputs">
-              <Button type="submit" size="sm" colorScheme="blue">
+              <Button
+                isLoading={isLoading}
+                type="submit"
+                size="sm"
+                colorScheme="blue"
+              >
                 Login
               </Button>{' '}
             </div>

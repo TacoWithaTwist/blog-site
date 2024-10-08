@@ -23,6 +23,7 @@ export default function Posts() {
   return (
     <>
       <Header />
+      <Create />
       {error && <span style={{ color: 'red' }}>{error}</span>}{' '}
       {/* Display error message if exists */}
       <div>

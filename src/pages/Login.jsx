@@ -10,11 +10,13 @@ export default function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
+      setIsLoading(true);
       const response = await axios.post('http://localhost:3000/api/login', {
         email,
         password,
@@ -27,6 +29,8 @@ export default function Login() {
     } catch (err) {
       setError('Invalid credentials');
       console.error(err);
+    } finally {
+      setIsLoading(false);
     }
   };
   return (
@@ -61,7 +65,12 @@ export default function Login() {
               />
             </div>
             <div className="inputs">
-              <Button type="submit" size="sm" colorScheme="blue">
+              <Button
+                isLoading={isLoading}
+                type="submit"
+                size="sm"
+                colorScheme="blue"
+              >
                 Login
               </Button>{' '}
             </div>
