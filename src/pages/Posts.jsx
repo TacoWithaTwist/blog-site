@@ -1,4 +1,6 @@
 import { useEffect, useState } from 'react';
+import Create from '../components/Create';
+import { Card, CardHeader, CardBody, Text } from '@chakra-ui/react';
 import Header from '../components/Header';
 import axios from 'axios';
 export default function Posts() {
@@ -25,17 +27,18 @@ export default function Posts() {
       <Header />
       <Create />
       {error && <span style={{ color: 'red' }}>{error}</span>}{' '}
-      {/* Display error message if exists */}
       <div>
         {posts.length > 0 ? (
           posts.map((post) => (
-            <div key={post.id}>
-              <h2>{post.title}</h2>
-              <p>{post.content}</p>
-            </div>
+            <Card key={post.id}>
+              <CardBody>
+                <CardHeader>{post.title}</CardHeader>
+                <Text>{post.content}</Text>
+              </CardBody>
+            </Card>
           ))
         ) : (
-          <p>No posts available.</p>
+          <p>No posts available</p>
         )}
       </div>
     </>
