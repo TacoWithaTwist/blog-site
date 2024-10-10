@@ -3,9 +3,11 @@ import Create from '../components/Create';
 import { Card, CardHeader, CardBody, Text } from '@chakra-ui/react';
 import Header from '../components/Header';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 export default function Posts() {
   const [posts, setPosts] = useState([]);
   const [error, setError] = useState(null);
+  const navigate = useNavigate();
   useEffect(() => {
     const fetchPosts = async () => {
       try {
@@ -18,6 +20,7 @@ export default function Posts() {
         setPosts(response.data);
       } catch (error) {
         setError(error);
+        navigate('/login');
       }
     };
     fetchPosts();
@@ -30,7 +33,7 @@ export default function Posts() {
       <div>
         {posts.length > 0 ? (
           posts.map((post) => (
-            <Card key={post.id}>
+            <Card key={post.id} bg={'#011627'}>
               <CardBody>
                 <CardHeader>{post.title}</CardHeader>
                 <Text>{post.content}</Text>
