@@ -20,6 +20,8 @@ export default function Posts() {
         setPosts(response.data);
       } catch (error) {
         setError(error);
+        localStorage.removeItem('userId');
+        localStorage.removeItem('jwtToken');
         navigate('/login');
       }
     };
