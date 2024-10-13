@@ -1,6 +1,8 @@
-import { Link, useNavigate } from 'react-router-dom';
-import { Button, ButtonGroup, Icon } from '@chakra-ui/react';
-import { FaHome } from 'react-icons/fa';
+import { useNavigate } from 'react-router-dom';
+import { Link as ReactRouterLink } from 'react-router-dom';
+import { Link as ChakraLink } from '@chakra-ui/react';
+import { Image } from '@chakra-ui/react';
+import logo from '../assets/new-logo-logo-zip-file/svg/logo-color.svg';
 import '../cssModules/Header.css';
 export default function Header() {
   const navigate = useNavigate();
@@ -14,52 +16,69 @@ export default function Header() {
     return (
       <div className="headerContainer">
         <div className="headerLeft">
-          <Link to="/">
-            <Icon as={FaHome} w={10} h={8}></Icon>
-            <Button size="sm" colorScheme="teal">
-              Home
-            </Button>
-          </Link>
+          <Image src={logo} w={10} h={8} className="logo" />
+          <ChakraLink as={ReactRouterLink} to="/" bg="#22222" color="#F15152">
+            Home
+          </ChakraLink>
         </div>
-        <ButtonGroup spacing={3} className="headerRight">
-          <Link to="/login">
-            <Button size="sm" colorScheme={'teal'}>
-              Login
-            </Button>
-          </Link>
+        <div className="headerRight">
+          <ChakraLink
+            size="sm"
+            bg="#F15152"
+            color="white"
+            _hover={{ bg: '#AC3333' }}
+            as={ReactRouterLink}
+            to={'/login'}
+          >
+            {' '}
+            Login
+          </ChakraLink>
 
-          <Link to="/signup">
-            <Button size="sm" colorScheme="teal">
-              Register
-            </Button>
-          </Link>
-        </ButtonGroup>
+          <ChakraLink
+            size="sm"
+            bg="#22222"
+            color="#F15152"
+            as={ReactRouterLink}
+            to={'/signup'}
+          >
+            {' '}
+            Register
+          </ChakraLink>
+        </div>
       </div>
     );
   }
   return (
     <div className="headerContainer">
       <div className="headerLeft">
-        <Link to="/">
-          <Icon as={FaHome} w={10} h={8}></Icon>
-          <Button size="sm" colorScheme="teal">
-            Home
-          </Button>
-        </Link>
+        <Image src={logo} w={10} h={8} className="logo" />
+        <ChakraLink as={ReactRouterLink} to="/" bg="#22222" color="#F15152">
+          Home
+        </ChakraLink>
       </div>
-      <ButtonGroup spacing={3} className="headerRight">
-        <Link to="/posts">
-          <Button size="sm" colorScheme={'teal'}>
-            Browse
-          </Button>
-        </Link>
+      <div className="headerRight">
+        <ChakraLink
+          size="sm"
+          bg="#22222"
+          color="#F15152"
+          _hover={{ bg: '#AC3333' }}
+          as={ReactRouterLink}
+          to="/posts"
+        >
+          {' '}
+          Browse
+        </ChakraLink>
 
-        <Link onClick={handleLogout}>
-          <Button size="sm" colorScheme="teal">
-            Logout
-          </Button>
-        </Link>
-      </ButtonGroup>
+        <ChakraLink
+          size="sm"
+          bg="#22222"
+          color="#F15152"
+          onClick={handleLogout}
+        >
+          {' '}
+          Logout
+        </ChakraLink>
+      </div>
     </div>
   );
 }

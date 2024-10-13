@@ -7,17 +7,17 @@ export default function Hero() {
     <>
       <div className="heroContainer">
         <div className="hero">
-          <Heading>The Tunisian Blog</Heading>
+          <Heading fontWeight={'extrabold'}>Voices of Tunisia</Heading>
           <Link className="cta" to="/login">
             Join Us!
           </Link>
         </div>
         <div className="heroDescription">
           <Text>
-            This website is a space for everyone to share experiences, jokes,
-            problems and anything you feel like sharing. We Tunisians treat each
-            other like family, right? So do not be mean, please, and act as if
-            you are home. We Welcome you!
+            Join Tunisians as they share their personal journeys, thoughts, and
+            everyday experiences. From the bustling streets of Tunis to the
+            tranquil coastal towns, discover life in Tunisia through the eyes of
+            its people.
           </Text>
         </div>
       </div>

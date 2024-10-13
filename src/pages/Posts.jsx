@@ -1,3 +1,4 @@
+import '../cssModules/Posts.css';
 import { useEffect, useState } from 'react';
 import Create from '../components/Create';
 import { Card, CardHeader, CardBody, Text } from '@chakra-ui/react';
@@ -20,8 +21,7 @@ export default function Posts() {
         setPosts(response.data);
       } catch (error) {
         setError(error);
-        localStorage.removeItem('userId');
-        localStorage.removeItem('jwtToken');
+
         navigate('/login');
       }
     };
@@ -32,10 +32,10 @@ export default function Posts() {
       <Header />
       <Create />
       {error && <span style={{ color: 'red' }}>{error}</span>}{' '}
-      <div>
+      <div className="cardsContainer">
         {posts.length > 0 ? (
           posts.map((post) => (
-            <Card key={post.id} bg={'#011627'}>
+            <Card key={post.id} bg={'#222222'} className="postCard">
               <CardBody>
                 <CardHeader>{post.title}</CardHeader>
                 <Text>{post.content}</Text>

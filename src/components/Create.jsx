@@ -1,11 +1,9 @@
-import '../cssModules/Create.css';
 import axios from 'axios';
 import { useDisclosure } from '@chakra-ui/react';
 import { useState } from 'react';
 import {
   Card,
   CardBody,
-  CardHeader,
   FormLabel,
   FormControl,
   Input,
@@ -51,20 +49,26 @@ export default function Create() {
   };
   return (
     <div className="Create">
-      <Button colorScheme="teal" onClick={onToggle}>
+      <Button
+        size="sm"
+        bg="#F15152"
+        color="white"
+        _hover={{ bg: '#AC3333' }}
+        onClick={onToggle}
+      >
+        {' '}
         Create a post now!
       </Button>
       <Collapse in={isOpen} animateOpacity>
         <Box>
-          <Card bg={'#011627'}>
-            <CardHeader color={'teal.500'}>Create a post</CardHeader>
+          <Card bg={'#222222'}>
             <CardBody>
               <FormControl onSubmit={handleSubmit}>
                 <form onSubmit={handleSubmit}>
-                  <FormLabel as="legend" color={'teal'}>
+                  <FormLabel as="legend" color={'white'}>
                     Post Creation
                   </FormLabel>
-                  <FormLabel color={'teal'}>Title</FormLabel>
+                  <FormLabel color={'white'}>Title</FormLabel>
                   <Input
                     type="text"
                     value={title}
@@ -72,14 +76,22 @@ export default function Create() {
                       setTitle(e.target.value);
                     }}
                   />
-                  <FormLabel color={'teal'}>Content</FormLabel>
+                  <FormLabel color={'white'}>Content</FormLabel>
                   <Textarea
                     value={content}
                     onChange={(e) => {
                       setContent(e.target.value);
                     }}
                   />
-                  <Button type="submit" isLoading={isLoading}>
+                  <Button
+                    size="sm"
+                    bg="#F15152"
+                    color="white"
+                    _hover={{ bg: '#AC3333' }}
+                    isLoading={isLoading}
+                    type="submit"
+                  >
+                    {' '}
                     Submit Post
                   </Button>
                 </form>

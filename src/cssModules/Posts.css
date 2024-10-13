@@ -1,0 +1,15 @@
+.postCard {
+  border: solid 3px #f15152;
+  width: 50%;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+.cardsContainer {
+  background-color: #222222;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  gap: 50px;
+  flex: 1;
+}

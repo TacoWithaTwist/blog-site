@@ -40,9 +40,8 @@ export default function Signup() {
       <Header />
       <div className="formContainer">
         <form onSubmit={handleSubmit} className="form">
-          <FormControl as="fieldset">
+          <FormControl as="fieldset" className="inputsContainer">
             <div className="inputs">
-              <FormLabel as="legend">Login :</FormLabel>
               <FormLabel htmlFor="">Username :</FormLabel>
               <Input
                 type="text"
@@ -80,10 +79,11 @@ export default function Signup() {
             </div>
             <div className="inputs">
               <Button
-                isLoading={isLoading}
-                type="submit"
                 size="sm"
-                colorScheme="blue"
+                bg="#F15152"
+                color="white"
+                _hover={{ bg: '#AC3333' }}
+                isLoading={isLoading}
               >
                 Login
               </Button>{' '}

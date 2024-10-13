@@ -3,5 +3,13 @@
   justify-content: center;
 }
 .form {
-  width: 75%;
+  width: 50%;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  padding: 20px;
+  border-radius: 8px;
+}
+.inputs {
+  display: grid;
+  grid-template-columns: 20%, 80%;
+  margin: 10px;
 }

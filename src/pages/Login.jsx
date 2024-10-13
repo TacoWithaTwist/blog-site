@@ -16,6 +16,8 @@ export default function Login() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
+      localStorage.removeItem('userId');
+      localStorage.removeItem('jwtToken');
       setIsLoading(true);
       const response = await axios.post('http://localhost:3000/api/login', {
         email,
@@ -38,9 +40,8 @@ export default function Login() {
       <Header />
       <div className="formContainer">
         <form onSubmit={handleSubmit} className="form">
-          <FormControl as="fieldset">
+          <FormControl as="fieldset" className="inputsContainer">
             <div className="inputs">
-              <FormLabel as="legend">Login :</FormLabel>
               <FormLabel htmlFor="">Email :</FormLabel>
               <Input
                 type="text"
@@ -66,10 +67,12 @@ export default function Login() {
             </div>
             <div className="inputs">
               <Button
+                size="sm"
+                bg="#F15152"
+                color="white"
+                _hover={{ bg: '#AC3333' }}
                 isLoading={isLoading}
                 type="submit"
-                size="sm"
-                colorScheme="blue"
               >
                 Login
               </Button>{' '}
