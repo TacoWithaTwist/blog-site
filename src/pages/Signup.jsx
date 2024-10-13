@@ -2,6 +2,7 @@ import Header from '../components/Header';
 import axios from 'axios';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import colors from '../components/ColorPallette';
 import {
   FormControl,
   FormErrorMessage,
@@ -16,6 +17,9 @@ export default function Signup() {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
   const navigate = useNavigate();
+
+  const secondary = colors.secondary;
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -68,7 +72,7 @@ export default function Signup() {
             <div className="inputs">
               <FormLabel htmlFor="">Password :</FormLabel>
               <Input
-                type="text"
+                type="password"
                 name="password"
                 id="password"
                 placeholder="Enter your password"
@@ -80,9 +84,9 @@ export default function Signup() {
             <div className="inputs">
               <Button
                 size="sm"
-                bg="#F15152"
+                bg={secondary}
                 color="white"
-                _hover={{ bg: '#AC3333' }}
+                _hover={{ bg: '#9D44B5' }}
                 isLoading={isLoading}
               >
                 Login

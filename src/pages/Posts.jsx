@@ -1,7 +1,8 @@
 import '../cssModules/Posts.css';
 import { useEffect, useState } from 'react';
 import Create from '../components/Create';
-import { Card, CardHeader, CardBody, Text } from '@chakra-ui/react';
+import { Collapse } from '@chakra-ui/react';
+import { Card, CardHeader, CardBody, Text, Heading } from '@chakra-ui/react';
 import Header from '../components/Header';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
@@ -21,12 +22,11 @@ export default function Posts() {
         setPosts(response.data);
       } catch (error) {
         setError(error);
-
         navigate('/login');
       }
     };
     fetchPosts();
-  });
+  }, [navigate]);
   return (
     <>
       <Header />
@@ -35,10 +35,18 @@ export default function Posts() {
       <div className="cardsContainer">
         {posts.length > 0 ? (
           posts.map((post) => (
-            <Card key={post.id} bg={'#222222'} className="postCard">
+            <Card
+              key={post.id}
+              bg={'#222222'}
+              className="postCard"
+              border={'solid 4px #9D44B5'}
+            >
               <CardBody>
-                <CardHeader>{post.title}</CardHeader>
+                <CardHeader>
+                  <Heading>{post.title}</Heading>
+                </CardHeader>
                 <Text>{post.content}</Text>
+                <Collapse opacity={'0.4'}>Details </Collapse>
               </CardBody>
             </Card>
           ))

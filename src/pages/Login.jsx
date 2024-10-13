@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { FormControl, FormLabel, FormErrorMessage } from '@chakra-ui/react';
 import { Input } from '@chakra-ui/react';
 import { Button } from '@chakra-ui/react';
+import colors from '../components/ColorPallette';
 import axios from 'axios';
 import '../cssModules/Login.css';
 import Header from '../components/Header';
@@ -12,6 +13,8 @@ export default function Login() {
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
+
+  const secondary = colors.secondary;
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -56,7 +59,7 @@ export default function Login() {
             <div className="inputs">
               <FormLabel htmlFor="">Password :</FormLabel>
               <Input
-                type="text"
+                type="password"
                 name="password"
                 id="password"
                 placeholder="Enter your password"
@@ -68,9 +71,9 @@ export default function Login() {
             <div className="inputs">
               <Button
                 size="sm"
-                bg="#F15152"
-                color="white"
-                _hover={{ bg: '#AC3333' }}
+                bg={secondary}
+                color={'white'}
+                _hover={{ bg: '#9D44B5' }}
                 isLoading={isLoading}
                 type="submit"
               >
