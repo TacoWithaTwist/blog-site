@@ -2,7 +2,14 @@ import '../cssModules/Posts.css';
 import { useEffect, useState } from 'react';
 import Create from '../components/Create';
 import { Collapse } from '@chakra-ui/react';
-import { Card, CardHeader, CardBody, Text, Heading } from '@chakra-ui/react';
+import {
+  Card,
+  CardHeader,
+  CardBody,
+  Text,
+  Heading,
+  Avatar,
+} from '@chakra-ui/react';
 import Header from '../components/Header';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
@@ -42,6 +49,10 @@ export default function Posts() {
               border={'solid 4px #9D44B5'}
             >
               <CardBody>
+                <CardHeader display={'inline-flex'}>
+                  <Avatar name={post.author.username} size={'sm'}></Avatar>
+                  <Text>{post.author.username}</Text>
+                </CardHeader>
                 <CardHeader>
                   <Heading>{post.title}</Heading>
                 </CardHeader>
