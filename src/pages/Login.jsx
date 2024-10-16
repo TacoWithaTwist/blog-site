@@ -14,8 +14,8 @@ export default function Login() {
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
 
-  const secondary = colors.secondary;
-
+  const r = colors.r;
+  const v = colors.v;
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -71,9 +71,9 @@ export default function Login() {
             <div className="inputs">
               <Button
                 size="sm"
-                bg={secondary}
+                bg={r}
                 color={'white'}
-                _hover={{ bg: '#9D44B5' }}
+                _hover={{ bg: v }}
                 isLoading={isLoading}
                 type="submit"
               >

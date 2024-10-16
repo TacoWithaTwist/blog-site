@@ -22,7 +22,7 @@ export default function Create() {
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
 
-  const secondary = colors.secondary;
+  const r = colors.r;
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -61,7 +61,7 @@ export default function Create() {
     >
       <Button
         size="sm"
-        bg={secondary}
+        bg={r}
         color="white"
         _hover={{ bg: '#9D44B5' }}
         onClick={onToggle}
@@ -95,7 +95,7 @@ export default function Create() {
                   />
                   <Button
                     size="sm"
-                    bg={secondary}
+                    bg={r}
                     color="white"
                     _hover={{ bg: '#9D44B5' }}
                     isLoading={isLoading}
