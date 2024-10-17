@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { useDisclosure } from '@chakra-ui/react';
 import { useState } from 'react';
-import colors from './ColorPallette';
+import colors from '../ulils/ColorPallette';
 import {
   Card,
   CardBody,

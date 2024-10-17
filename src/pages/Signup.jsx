@@ -2,7 +2,7 @@ import Header from '../components/Header';
 import axios from 'axios';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import colors from '../components/ColorPallette';
+import colors from '../ulils/ColorPallette';
 import {
   FormControl,
   FormErrorMessage,
@@ -18,7 +18,8 @@ export default function Signup() {
   const [error, setError] = useState(null);
   const navigate = useNavigate();
 
-  const secondary = colors.secondary;
+  const r = colors.r;
+  const v = colors.v;
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -84,12 +85,13 @@ export default function Signup() {
             <div className="inputs">
               <Button
                 size="sm"
-                bg={secondary}
+                bg={r}
                 color="white"
-                _hover={{ bg: '#9D44B5' }}
+                _hover={{ bg: v }}
                 isLoading={isLoading}
+                type="submit"
               >
-                Login
+                Register
               </Button>{' '}
             </div>
           </FormControl>

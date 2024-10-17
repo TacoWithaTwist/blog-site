@@ -1,8 +1,5 @@
 # React + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
-
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+A front-end design that implements the usage of an api I made.
+back-end repo:(https://github.com/TacoWithaTwist/blog-api)
+I used open source design from:(https://www.figma.com/design/60Vh5BPybJjNYA2H0IJumC/Bahram-l-Free-Blog-UI-Template-(Community)?node-id=311-98&node-type=canvas&t=9pHNjYQ3bVJkN3jE-0)

@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { FormControl, FormLabel, FormErrorMessage } from '@chakra-ui/react';
 import { Input } from '@chakra-ui/react';
 import { Button } from '@chakra-ui/react';
-import colors from '../components/ColorPallette';
+import colors from '../ulils/ColorPallette';
 import axios from 'axios';
 import '../cssModules/Login.css';
 import Header from '../components/Header';

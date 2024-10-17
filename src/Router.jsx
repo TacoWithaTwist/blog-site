@@ -4,6 +4,8 @@ import ErrorPage from './pages/ErrorPage';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
 import Posts from './pages/Posts';
+import Create from './pages/Create';
+import UPost from './pages/UPost';
 const Router = () => {
   const router = createBrowserRouter([
     {
@@ -24,6 +26,16 @@ const Router = () => {
     {
       path: '/posts',
       element: <Posts />,
+      errorElement: <ErrorPage />,
+    },
+    {
+      path: '/create',
+      element: <Create />,
+      errorElement: <ErrorPage />,
+    },
+    {
+      path: '/posts/:postid',
+      element: <UPost />,
       errorElement: <ErrorPage />,
     },
   ]);
