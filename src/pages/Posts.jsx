@@ -21,10 +21,16 @@ export default function Posts() {
   const [posts, setPosts] = useState([]);
   const [error, setError] = useState(null);
   const [page, setPage] = useState(1);
+  const [totalPosts, setTotalPosts] = useState(1);
   const navigate = useNavigate();
+  const postsPerPage = 3;
+
   const handleNextPage = () => {
-    setPage(page + 1);
+    if (page < Math.ceil(totalPosts / postsPerPage)) {
+      setPage(page + 1);
+    }
   };
+
   const handlePreviousPage = () => {
     if (page > 1) setPage(page - 1);
   };
@@ -33,10 +39,7 @@ export default function Posts() {
   const images = [
     'https://images.unsplash.com/photo-1728567409684-e42ba81a3c34?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
     'https://plus.unsplash.com/premium_photo-1707146618205-a865ca443906?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-    'https://images.unsplash.com/photo-1728567409684-e42ba81a3c34?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-    'https://plus.unsplash.com/premium_photo-1707146618205-a865ca443906?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-    'https://images.unsplash.com/photo-1728567409684-e42ba81a3c34?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-    'https://plus.unsplash.com/premium_photo-1707146618205-a865ca443906?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+    // Add more images if needed
   ];
 
   useEffect(() => {
@@ -44,12 +47,13 @@ export default function Posts() {
       try {
         const token = localStorage.getItem('jwtToken');
         const response = await axios.get('http://localhost:3000/api/posts', {
-          params: { page, limit: 3 },
+          params: { page, limit: postsPerPage },
           headers: {
             Authorization: `Bearer ${token}`,
           },
         });
-        setPosts(response.data);
+        setPosts(response.data.posts);
+        setTotalPosts(response.data.totalPosts);
       } catch (error) {
         setError(error);
         navigate('/login');
@@ -57,10 +61,11 @@ export default function Posts() {
     };
     fetchPosts();
   }, [navigate, page]);
+
   return (
     <>
       <Header />
-      {error && <span style={{ color: 'red' }}>{error}</span>}{' '}
+      {error && <span style={{ color: 'red' }}>{error}</span>}
       <Box bg={bg} className="cardsContainer">
         {posts.length > 0 ? (
           posts.map((post, index) => (
@@ -89,9 +94,16 @@ export default function Posts() {
           <Button onClick={handlePreviousPage} disabled={page === 1}>
             Previous
           </Button>
-          <Button onClick={handleNextPage}>Next</Button>
+          <Button
+            onClick={handleNextPage}
+            disabled={page >= Math.ceil(totalPosts / postsPerPage)}
+          >
+            Next
+          </Button>
         </div>
-        <Text>Page {page}.</Text>
+        <Text>
+          Page {page} of {Math.ceil(totalPosts / postsPerPage)}.
+        </Text>
       </Box>
     </>
   );
