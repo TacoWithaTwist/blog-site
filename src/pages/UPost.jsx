@@ -2,6 +2,7 @@ import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import Header from '../components/Header';
+import AddComment from './AddComment';
 import {
   Card,
   CardHeader,
@@ -54,8 +55,10 @@ export default function UPost() {
           <CardBody>
             <Text>{post.content}</Text>
           </CardBody>
+          <AddComment postid={post.id} />
         </Card>
       )}
+
       {!post && !isLoading && !error && <Text>No post found.</Text>}
     </>
   );
