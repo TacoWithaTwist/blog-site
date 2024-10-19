@@ -12,6 +12,7 @@ import {
   Avatar,
   Image,
   Text,
+  Button,
 } from '@chakra-ui/react';
 import Header from '../components/Header';
 import axios from 'axios';
@@ -19,8 +20,15 @@ import { useNavigate } from 'react-router-dom';
 export default function Posts() {
   const [posts, setPosts] = useState([]);
   const [error, setError] = useState(null);
-
+  const [page, setPage] = useState(1);
   const navigate = useNavigate();
+  const handleNextPage = () => {
+    setPage(page + 1);
+  };
+  const handlePreviousPage = () => {
+    if (page > 1) setPage(page - 1);
+  };
+
   const bg = colors.bg;
   const images = [
     'https://images.unsplash.com/photo-1728567409684-e42ba81a3c34?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
@@ -30,11 +38,13 @@ export default function Posts() {
     'https://images.unsplash.com/photo-1728567409684-e42ba81a3c34?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
     'https://plus.unsplash.com/premium_photo-1707146618205-a865ca443906?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
   ];
+
   useEffect(() => {
     const fetchPosts = async () => {
       try {
         const token = localStorage.getItem('jwtToken');
         const response = await axios.get('http://localhost:3000/api/posts', {
+          params: { page, limit: 3 },
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -46,7 +56,7 @@ export default function Posts() {
       }
     };
     fetchPosts();
-  }, [navigate]);
+  }, [navigate, page]);
   return (
     <>
       <Header />
@@ -75,6 +85,13 @@ export default function Posts() {
         ) : (
           <p>No posts available</p>
         )}
+        <div>
+          <Button onClick={handlePreviousPage} disabled={page === 1}>
+            Previous
+          </Button>
+          <Button onClick={handleNextPage}>Next</Button>
+        </div>
+        <Text>Page {page}.</Text>
       </Box>
     </>
   );

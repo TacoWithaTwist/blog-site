@@ -103,8 +103,8 @@ export default function Header() {
         >
           Logout
         </ChakraLink>
-        <Button color={bg} bg={ctaColor}>
-          Subscribe
+        <Button color={bg} bg={ctaColor} as={ReactRouterLink} to={'/create'}>
+          Create Now!
         </Button>
       </Box>
     </Box>
