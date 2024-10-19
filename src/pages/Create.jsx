@@ -1,7 +1,7 @@
 import axios from 'axios';
-import { useDisclosure } from '@chakra-ui/react';
 import { useState } from 'react';
 import colors from '../ulils/ColorPallette';
+import Header from '../components/Header';
 import {
   Card,
   CardBody,
@@ -9,21 +9,22 @@ import {
   FormControl,
   Input,
   Button,
-  Collapse,
   Textarea,
   Box,
   Divider,
   Center,
 } from '@chakra-ui/react';
+import { useNavigate } from 'react-router-dom';
 export default function Create() {
-  const { isOpen, onToggle } = useDisclosure();
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
-
+  const [summary, setSummary] = useState('');
+  const navigate = useNavigate();
   const r = colors.r;
-
+  const bg = colors.bg;
+  const textDefault = colors.textDefault;
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -36,6 +37,7 @@ export default function Create() {
         {
           title: title,
           content: content,
+          summary: summary,
           userId: Number(userId),
         },
         {
@@ -45,6 +47,7 @@ export default function Create() {
         }
       );
       console.log(response);
+      navigate('/posts');
     } catch (err) {
       setError('Invalid credentials');
       console.error(err);
@@ -53,32 +56,24 @@ export default function Create() {
     }
   };
   return (
-    <Box
-      display={'flex'}
-      flexDirection={'column'}
-      alignItems={'center'}
-      className="Create"
-    >
-      <Button
-        size="sm"
-        bg={r}
-        color="white"
-        _hover={{ bg: '#9D44B5' }}
-        onClick={onToggle}
+    <>
+      <Header />
+      <Box
+        display={'flex'}
+        flexDirection={'column'}
+        alignItems={'center'}
+        className="Create"
       >
-        {' '}
-        Create a post now!
-      </Button>
-      <Center height="50px">
-        <Divider />
-      </Center>
-      <Collapse in={isOpen} animateOpacity>
-        <Box w={'100%'}>
-          <Card bg={'#222222'}>
+        <Center height="50px">
+          <Divider />
+        </Center>
+
+        <Box w={'100%'} h={'70%'}>
+          <Card bg={bg}>
             <CardBody>
               <FormControl onSubmit={handleSubmit}>
                 <form onSubmit={handleSubmit}>
-                  <FormLabel color={'white'}>Title</FormLabel>
+                  <FormLabel color={textDefault}>Title</FormLabel>
                   <Input
                     type="text"
                     value={title}
@@ -86,7 +81,15 @@ export default function Create() {
                       setTitle(e.target.value);
                     }}
                   />
-                  <FormLabel color={'white'}>Content</FormLabel>
+                  <FormLabel color={textDefault}>Summary</FormLabel>
+                  <Input
+                    type="text"
+                    value={summary}
+                    onChange={(e) => {
+                      setSummary(e.target.value);
+                    }}
+                  />
+                  <FormLabel color={textDefault}>Content</FormLabel>
                   <Textarea
                     value={content}
                     onChange={(e) => {
@@ -109,8 +112,8 @@ export default function Create() {
             </CardBody>
           </Card>
         </Box>
-      </Collapse>
-      {error && <p>Error with submitting your post, sorry!</p>}
-    </Box>
+        {error && <p>Error with submitting your post, sorry!</p>}
+      </Box>
+    </>
   );
 }
