@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import Header from '../components/Header';
 import AddComment from './AddComment';
+import Comments from './Comments';
 import {
   Card,
   CardHeader,
@@ -29,7 +30,6 @@ export default function UPost() {
             },
           }
         );
-        console.log(response);
         setPost(response.data);
       } catch (error) {
         setError(error);
@@ -55,6 +55,7 @@ export default function UPost() {
           <CardBody>
             <Text>{post.content}</Text>
           </CardBody>
+          <Comments />
           <AddComment postid={post.id} />
         </Card>
       )}

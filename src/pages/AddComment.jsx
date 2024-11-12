@@ -38,7 +38,7 @@ export default function AddComment() {
         },
         {
           headers: {
-            Authorization: `Bearer ${token}`, // Send the token in the Authorization header
+            Authorization: `Bearer ${token}`,
           },
         }
       );
@@ -68,7 +68,7 @@ export default function AddComment() {
             <CardBody>
               <FormControl onSubmit={handleSubmit}>
                 <form onSubmit={handleSubmit}>
-                  <FormLabel color={textDefault}>Content</FormLabel>
+                  <FormLabel color={textDefault}>Comment</FormLabel>
                   <Textarea
                     value={content}
                     onChange={(e) => {
